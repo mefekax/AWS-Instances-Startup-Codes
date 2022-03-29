@@ -1,0 +1,12 @@
+#! /bin/bash
+yum update -y
+amazon-linux-extras install nginx1.12
+yum install git -y
+systemctl start nginx
+cd /usr/share/nginx/html
+git clone https://github.com/techproedu/designer.git
+chmod -R 777 /usr/share/nginx/html
+rm index.html
+cp -R ./designer/. .
+systemctl restart nginx
+systemctl enable nginx
